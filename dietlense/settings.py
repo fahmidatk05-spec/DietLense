@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 from pathlib import Path
 from decouple import config
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'diet_app'
+    'diet_app',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -130,5 +132,11 @@ MAILERS = {
 }
 
 # CustomUser model config
-
 AUTH_USER_MODEL="diet_app.CustomUser"
+
+
+# custom authentication backend config
+AUTHENTICATION_BACKENDS=[
+    'django.contrib.auth.backends.ModelBackend',
+    'diet_app.backends.EmailBackend',
+] 
